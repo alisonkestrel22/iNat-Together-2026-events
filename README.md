@@ -14,7 +14,7 @@ This is a single self-contained HTML file — no server, no database, no API key
 
 The only live network call the tool makes is geocoding a visitor's typed address via [Nominatim/OpenStreetMap](https://nominatim.openstreetmap.org/). It does **not** query Google Sheets or the iNaturalist API live — those are only used when the file is rebuilt.
 
-This mirrors the architecture of the [City Nature Challenge 2026 project lookup tool](#) (link it here if public), which uses the same build-once, embed-everything approach.
+This mirrors the architecture of the [City Nature Challenge 2026 project lookup tool](#), which uses the same build-once, embed-everything approach.
 
 ## Data sources (used to build the file, not at runtime)
 
