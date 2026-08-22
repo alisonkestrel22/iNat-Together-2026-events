@@ -2,7 +2,7 @@
 
 A radius-based search tool for finding in-person iNat Together 2026 events (September 18–28, 2026). Visitors enter a location or use their device's GPS, and the tool shows approved events within an adjustable radius, sorted by distance.
 
-**Live tool: (https://alisonkestrel22.github.io/iNat-Together-2026-events/)
+**Live tool: https://alisonkestrel22.github.io/iNat-Together-2026-events/
 
 Embedded on: ###
 
