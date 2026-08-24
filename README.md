@@ -4,7 +4,7 @@ A radius-based search tool for finding in-person iNat Together 2026 events (Sept
 
 **Live tool: https://alisonkestrel22.github.io/iNat-Together-2026-events/
 
-Embedded on: ###
+Embedded on: https://www.inaturalist.org/pages/inattogether
 
 ---
 
@@ -20,8 +20,7 @@ This mirrors the architecture of the [City Nature Challenge 2026 project lookup 
 
 - **Event list:** the iNat Together 2026 event submission Google Sheet, filtered to rows where **"Added to umbrella" = yes**
 - **Event location:** each approved project's location requirement (its `place_id`, or occasionally a direct lat/lng), read from the iNaturalist API — the same data shown under **"Project Requirements"** on the project page
-- **Place boundaries:** Alison's iNaturalist Places CSV export, matched by `place_id` to get a bounding box, which is centered to a single lat/lng per event
-- **Note:** all iNaturalist Network node front-ends (inaturalist.ca, inaturalist.ala.org.au, panama.inaturalist.org, mexico.inaturalist.org, etc.) share the same underlying `api.inaturalist.org` API, differentiated by `site_id` — so project lookups don't need per-node API domains
+- **Place boundaries:** iNaturalist Places CSV export, matched by `place_id` to get a bounding box, which is centered to a single lat/lng per event
 
 ## Updating the tool
 
@@ -32,7 +31,7 @@ There's no live pipeline — updating means regenerating the file and re-uploadi
 3. The regenerated `index.html` replaces the old one in this repo (Add file → Upload files → same filename → Commit).
 4. GitHub Pages picks up the change automatically within a minute or so — no need to touch the wiki embed.
 
-The iNaturalist Places CSV export refreshes weekly (Fridays), so refresh timing is generally tied to that cadence. If a project references a Place created very recently (after the last export), it's resolved individually via a live API lookup instead of falling through.
+The iNaturalist Places CSV export refreshes weekly, so refresh timing is generally tied to that cadence. If a project references a Place created very recently (after the last export), it's resolved individually via a live API lookup instead of falling through.
 
 ## Known limitations
 
