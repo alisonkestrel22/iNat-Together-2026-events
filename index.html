@@ -133,11 +133,13 @@
   }
   .examples-label { font-size: 12px; color: var(--muted); font-family: var(--mono); }
   .example-chip {
+    appearance: none; -webkit-appearance: none;
     font-size: 12px; padding: 4px 10px; border-radius: 20px;
     border: 1px solid var(--border); background: var(--bg); color: var(--muted);
     cursor: pointer; font-family: var(--mono); transition: all 0.15s;
   }
   .example-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent3); }
+  .example-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   #result { margin-top: 28px; }
 
@@ -234,7 +236,7 @@
   <div class="input-group">
     <div class="input-wrap">
       <span class="input-icon">📍</span>
-      <input type="text" id="locationInput" placeholder="Enter a city, neighborhood, or address…">
+      <input type="text" id="locationInput" placeholder="Enter a city, neighborhood, or address…" aria-label="Enter your location">
     </div>
     <button id="geoBtn" onclick="useMyLocation()">📡 Use my location</button>
     <button id="searchBtn" onclick="doLookup()">
@@ -256,12 +258,12 @@
 
   <div class="examples">
     <span class="examples-label">Try:</span>
-    <span class="example-chip" onclick="tryExample(this)">Toronto, Canada</span>
-    <span class="example-chip" onclick="tryExample(this)">Sydney, Australia</span>
-    <span class="example-chip" onclick="tryExample(this)">Santa Rosa, California</span>
+    <button type="button" class="example-chip" onclick="tryExample(this)">Toronto, Canada</button>
+    <button type="button" class="example-chip" onclick="tryExample(this)">Sydney, Australia</button>
+    <button type="button" class="example-chip" onclick="tryExample(this)">Santa Rosa, California</button>
   </div>
 
-  <div id="result"></div>
+  <div id="result" aria-live="polite"></div>
 
   <div class="stats-bar">
     <div class="stat">
@@ -449,14 +451,14 @@ function getRadiusKm() {
 // ══════════════════════════════════════════════════════════════════════════
 function useMyLocation() {
   if (!navigator.geolocation) {
-    alert('Your browser doesn\'t support location lookup — try typing an address instead.');
+    renderError('Your browser doesn\'t support location lookup — try typing an address instead.');
     return;
   }
   const resultDiv = document.getElementById('result');
   resultDiv.innerHTML = '<div class="loading"><div class="spinner"></div><span>Getting your location…</span></div>';
   navigator.geolocation.getCurrentPosition(
     (pos) => runSearch(pos.coords.latitude, pos.coords.longitude, 'your current location'),
-    () => { resultDiv.innerHTML = ''; alert('Couldn\'t get your location — try typing an address instead.'); }
+    () => { renderError('Couldn\'t get your location — try typing an address instead.'); }
   );
 }
 
