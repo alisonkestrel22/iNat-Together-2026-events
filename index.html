@@ -273,7 +273,7 @@
   </div>
 </div>
 
-<footer>iNaturalist Ambassador Program · iNat Together 2026 · Event list current as of August 19, 2026</footer>
+<footer>iNaturalist Ambassador Program · iNat Together 2026 · Event list current as of <span id="buildDate">August 31, 2026</span></footer>
 
 <script>
 // ══════════════════════════════════════════════════════════════════════════
@@ -302,6 +302,9 @@
 // updated places export, if needed) and ask to refresh — each new approved
 // project's place_id gets resolved the same way and appended to EVENTS
 // below.
+// LAST_BUILT_DATE below is the single source of truth for the "current as
+// of" date shown in the footer AND this comment — update it in one place.
+const LAST_BUILT_DATE = 'August 31, 2026';
 // Last built: August 31, 2026 — 73 approved events at build time.
 // Places data snapshot used: still the August 22, 2026 export (engineers
 // hadn't refreshed the weekly file as of this build) — brand-new places
@@ -583,6 +586,7 @@ document.getElementById('locationInput').addEventListener('keydown', e => {
 });
 
 document.querySelector('.stat-num').textContent = EVENTS.length;
+document.getElementById('buildDate').textContent = LAST_BUILT_DATE;
 </script>
 </body>
 </html>
