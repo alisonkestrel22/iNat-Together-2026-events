@@ -302,12 +302,22 @@
 // updated places export, if needed) and ask to refresh — each new approved
 // project's place_id gets resolved the same way and appended to EVENTS
 // below.
-// Last built: August 28, 2026 — 65 approved events at build time.
+// Last built: August 31, 2026 — 73 approved events at build time.
+// Places data snapshot used: still the August 22, 2026 export (engineers
+// hadn't refreshed the weekly file as of this build) — brand-new places
+// were resolved via live API lookup as needed, same as always.
 //
 // Flags for Alison's review:
 //   - "Health Vally Trail - BioBliz" resolves to a place covering the whole
 //     Regional Municipality of Waterloo (not just the trail) — its point is
 //     a rough regional center, not the actual trail.
+//   - "Nocturnal Spider 'Sniff'" (Kasey Hicks) resolves to all of Middlesex
+//     County, CT, not just Ravine Park.
+//   - "Ruby Mountains, NV Nighttime Mothing Bioblitz" (Lily Rice) resolves
+//     to all of Elko County, NV, not the Harrison Pass trailhead specified
+//     in the project description.
+//   - "Martin Nature Observation Walk" (Leah Ward) resolves to all of
+//     Hampshire, England, not the specific church/walk location.
 //   - "Bioblitz Biomuseo, SEP-2026" (Darién Montañez): the sheet's link
 //     (bioblitz-biomuseo-sep-26) 404s — the real project slug is
 //     bioblitz-biomuseo-sep-2026. Linked to the correct project below.
@@ -395,6 +405,14 @@ const EVENTS = [
   { title: "iNat Together: KZN South Coast", host: "Elize Geraghty", hostUsers: ["elize34"], type: "Bioblitz & Intro Talks", date: "September 24–28, 2026", url: "https://www.inaturalist.org/projects/inat-together-kzn-south-coast", locs: [[-30.5835,30.16807],[-30.9611,30.30247]] },
   { title: "Wright State Entomology Club Fall Woods Walk", host: "Rachel Mansfield", hostUsers: ["mansfieldrh"], type: "Guided walk", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/wright-state-entomology-club-fall-woods-walk", locs: [[39.81045,-84.01986]] },
   { title: "Radical Mycology Mycoblitz 2026", host: "Graham Steinruck", hostUsers: ["grahamsteinruck"], type: "Bioblitz", date: "September 24–27, 2026", url: "https://www.inaturalist.org/projects/radical-mycology-mycoblitz-2026", locs: [[45.22345,-122.56174]] },
+  { title: "Nocturnal Spider \"Sniff\"", host: "Kasey Hicks", hostUsers: ["kasey_hicks"], type: "Guided walk", date: "September 23, 2026", url: "https://www.inaturalist.org/projects/nocturnal-spider-sniff", locs: [[41.41239,-72.52924]] },
+  { title: "Ruby Mountains, NV Nighttime Mothing Bioblitz", host: "Lily Rice", hostUsers: ["liliumoryza"], type: "Nighttime mothing bioblitz", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/ruby-mountains-nv-nighttime-mothing-bioblitz", locs: [[41.05941,-115.52949]] },
+  { title: "iNat Together: Shirley Chisholm State Park Hike #1", host: "Lynette Lewis", hostUsers: ["lynalew"], type: "Intro to iNat talk & trying it out together", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-shirley-chisholm-state-park-hike-1", locs: [[40.64546,-73.86855]] },
+  { title: "iNat Together: Shirley Chisholm State Park Hike #2", host: "Lynette Lewis", hostUsers: ["lynalew"], type: "Intro to iNat talk & trying it out together", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-shirley-chisholm-state-park-hike-2", locs: [[40.64546,-73.86855]] },
+  { title: "Martin Nature Observation Walk", host: "Leah Ward", hostUsers: ["leahward9"], type: "Intro to iNat talk & trying it out together", date: "September 26, 2026", url: "https://uk.inaturalist.org/projects/martin-nature-observation-walk", locs: [[51.02671,-1.33764]] },
+  { title: "Locust Grove Nature Center Bioblitz 2026", host: "Samantha Lowe", hostUsers: ["sam_k_lowe"], type: "2 hr guided walk with intro to iNat and all-day bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/locust-grove-nature-center-bioblitz-2026", locs: [[39.02507,-77.15822]] },
+  { title: "Beaver Lodge Bioblitz September 2026", host: "Sasha Fairbairn", hostUsers: ["watchersasha"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/beaver-lodge-bioblitz-september-2026", locs: [[49.9837,-125.25692]] },
+  { title: "iNat Together - Sinite Kamani, Sliven, Bulgaria", host: "Steve Mumford", hostUsers: ["stevem4560"], type: "Guided walk", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-sinite-kamani-sliven-bulgaria", locs: [[42.64615,26.27416]] },
 ];
 
 let unit = 'km';
