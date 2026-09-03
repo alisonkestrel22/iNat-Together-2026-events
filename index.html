@@ -304,14 +304,14 @@
 // below.
 // LAST_BUILT_DATE below is the single source of truth for the "current as
 // of" date shown in the footer AND this comment — update it in one place.
-const LAST_BUILT_DATE = 'September 2, 2026';
-// Last built: September 2, 2026 — 139 approved events at build time.
+const LAST_BUILT_DATE = 'September 3, 2026';
+// Last built: September 3, 2026 — 169 approved events at build time.
 // Places data snapshot used: September 1, 2026 export.
-// This refresh removed "Parks for Pollinators 2026: Bickham-Rudkin Park
-// Virtual BioBlitz" (Amanda Thomas) — no longer marked approved in the
-// sheet (Notes: "needs its own project"), so it was pulled from the list.
 //
 // Flags for Alison's review:
+//   - "iNat together Salamanca 2026" (David Marcos Vidal) resolves to the
+//     entire city of Salamanca, not a specific park — date/location still
+//     TBD per the submission itself.
 //   - "Health Vally Trail - BioBliz" resolves to a place covering the whole
 //     Regional Municipality of Waterloo (not just the trail) — its point is
 //     a rough regional center, not the actual trail.
@@ -485,6 +485,36 @@ const EVENTS = [
   { title: "\"iNat Together\" Mini BioBlitz at Hauser Nature Center", host: "Timothy Grover", hostUsers: ["norwichtim"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-mini-bioblitz-at-hauser-nature-center", locs: [[41.06973,-75.47896]] },
   { title: "SBPC iNat Together Hopkins Wilderness Park Bioblitz 2026", host: "Thomas Lacy", hostUsers: ["sertwy"], type: "Bioblitz", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/sbpc-inat-together-hopkins-wilderness-park-bioblitz-2026", locs: [[33.82951,-118.37453]] },
   { title: "iNat Together - Hasting Park Conservancy", host: "Matt", hostUsers: ["matt-b","thecuriousnuthatch"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-hasting-park-conservancy", locs: [[49.28238,-123.03974]] },
+  { title: "Grey Cloud Gathering on Sept 19th", host: "Nico Montag", hostUsers: ["butcher-bird"], type: "Group hike", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/grey-cloud-gathering-on-sept-19th", locs: [[44.7919,-92.95972]] },
+  { title: "September 26 - Nature Walk", host: "Vishaal Loganathan", hostUsers: ["vishaal-loganathan"], type: "Guided walk", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/september-26-nature-walk", locs: [[12.93577,77.57391]] },
+  { title: "Lasqueti Ecological Reserve Exploration", host: "Charlene Lloyd", hostUsers: ["chrlly"], type: "Group hike", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/lasqueti-ecological-reserve-exploration", locs: [[49.46214,-124.29158]] },
+  { title: "McGill's Downtown Campus BioBlitz - 2026", host: "Sophie Scott", hostUsers: ["sophs_73"], type: "Bioblitz", date: "September 18–27, 2026", url: "https://www.inaturalist.ca/projects/mcgill-s-downtown-campus-bioblitz-2026", locs: [[45.50771,-73.57823]] },
+  { title: "McGill's Gault Nature Reserve BioBlitz - 2026", host: "Sophie Scott", hostUsers: ["sophs_74"], type: "Bioblitz", date: "September 18–27, 2026", url: "https://www.inaturalist.ca/projects/mcgill-s-gault-nature-reserve-bioblitz-2026", locs: [[45.55026,-73.15393]] },
+  { title: "McGill's Macdonald Campus BioBlitz - 2026", host: "Sophie Scott", hostUsers: ["sophs_75"], type: "Bioblitz", date: "September 18–27, 2026", url: "https://www.inaturalist.ca/projects/mcgill-s-macdonald-campus-bioblitz-2026", locs: [[45.42066,-73.94583]] },
+  { title: "Tuesday Together! (at the museum)", host: "Lynn Seman", hostUsers: ["rlseman"], type: "Intro to iNat talk & trying it out together", date: "September 22, 2026", url: "https://www.inaturalist.org/projects/tuesday-together-at-the-museum", locs: [[34.02325,-98.68798]] },
+  { title: "Keith Clark Nature Walk", host: "liu", hostUsers: ["cosmico"], type: "Guided walk", date: "September 28, 2026", url: "https://www.inaturalist.org/projects/keith-clark-nature-walk", locs: [[48.65321,-123.40317]] },
+  { title: "iNat Together - Introduction Workshop in Pakapakanthi", host: "Jamie Arrizza", hostUsers: ["jamie_a","mgilbey","insectivor3"], type: "Intro to iNat talk & trying it out together", date: "September 23, 2026", url: "https://www.inaturalist.org/projects/inat-together-introduction-workshop-in-pakapakanthi", locs: [[-34.93733,138.62119]] },
+  { title: "iNat Together at GSU Perimeter", host: "Kellen Murphy", hostUsers: ["kamur37"], type: "Bioblitz", date: "September 22, 2026", url: "https://www.inaturalist.org/projects/inat-together-at-gsu-perimeter", locs: [[33.79279,-84.18697]] },
+  { title: "Validebağ Korusu Türsay 2026", host: "Umut Hasanoğlu", hostUsers: ["umuthasanoglu","ouromouse"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/validebag-korusu-tursay-2026", locs: [[41.01467,29.04469]] },
+  { title: "Let's iNat Together in Crete!", host: "Sofia Giakoumi", hostUsers: ["sgiakoum"], type: "Fieldwork, talks & exploring biodiversity together", date: "September 25–28, 2026", url: "https://www.inaturalist.org/projects/let-s-inat-together-in-crete", locs: [[35.25088,24.9136]] },
+  { title: "iNat Together (Baguio)", host: "Norman Marigza", hostUsers: ["astronorm"], type: "Group hike", date: "September 18–28, 2026 (weather permitting)", url: "https://www.inaturalist.org/projects/inat-together-baguio", locs: [[17.35087,121.05835],[16.56125,120.68715],[16.40322,120.58955]] },
+  { title: "Evening Birding & Nighttime Sky-Gazing at Bayfront Park", host: "Rob Porter", hostUsers: ["rgeraldporter"], type: "Guided walk", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/evening-birding-nighttime-sky-gazing-at-bayfront-park", locs: [[43.27125,-79.87455]] },
+  { title: "iNat Together: Moth Night Fenner Nature Center", host: "Sophia LaRochelle", hostUsers: ["eryngium_leavenworthii","kenda11"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/inat-together-moth-night-fenner-nature-center", locs: [[42.70908,-84.51834]] },
+  { title: "BRPC Ovingdean September 2026", host: "Ben Holt", hostUsers: ["hamlet_ben"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/brpc-ovingdean-september-2026", locs: [[50.8058,-0.0716]] },
+  { title: "BRPC Lee-on-the-Solent September 2026", host: "Ben Holt", hostUsers: ["hamlet_ben"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/brpc-lee-on-the-solent-september-2026", locs: [[50.79911,-1.20252]] },
+  { title: "BRPC Beadnell Haven September 2026", host: "Ben Holt", hostUsers: ["hamlet_ben"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/brpc-beadnell-haven-september-2026", locs: [[55.55846,-1.62732]] },
+  { title: "BRPC Menai Bridge September 2026", host: "Ben Holt", hostUsers: ["hamlet_ben"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/brpc-menai-bridge-september-2026", locs: [[53.22152,-4.16755]] },
+  { title: "BRPC Kilve September 2026", host: "Ben Holt", hostUsers: ["hamlet_ben"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/brpc-kilve-september-2026", locs: [[51.19374,-3.23012]] },
+  { title: "\"iNat Together 2026\" Bioblitz: CMC Vellore campus and around", host: "Harshjeet Singh Bal", hostUsers: ["balharsh"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-bioblitz-cmc-vellore-campus-and-around", locs: [[12.87916,79.13071]] },
+  { title: "Schenley Park BioBlitz - iNat Together 2026", host: "Olive Samsel", hostUsers: ["youonlyoliveonce"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/schenley-park-bioblitz-inat-together-2026", locs: [[40.43589,-79.94311]] },
+  { title: "iNat together Salamanca 2026: ¡las primeras setas de otoño!", host: "David Marcos Vidal", hostUsers: ["davidmarcosvidal"], type: "Bioblitz / Intro to iNat (weather dependent)", date: "Late September 2026 (date TBD)", url: "https://www.inaturalist.org/projects/inat-together-salamanca-2026-las-primeras-setas-de-otono", locs: [[40.96581,-5.66779]] },
+  { title: "Birds of Kamrup Metro September 2026", host: "Sunny Das", hostUsers: ["sunnydas"], type: "Bird Watching", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/birds-of-kamrup-metro-september-2026", locs: [[26.12729,91.90425]] },
+  { title: "iNat Together: Lacurile Bucureștiului, descoperite la pas", host: "Oana Marin", hostUsers: ["oanam83"], type: "Intro to iNat talk & trying it out together", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-lacurile-bucurestiului-descoperite-la-pas", locs: [[44.47035,26.13338]] },
+  { title: "SBMNH Bioblitz 2026", host: "Megan Vega", hostUsers: ["adventuremegan","elyuriaas"], type: "Bioblitz", date: "September 22, 2026", url: "https://www.inaturalist.org/projects/sbmnh-bioblitz-2026", locs: [[34.44072,-119.71579]] },
+  { title: "iNat Together a Biella: natura alla Conca di Oropa", host: "Deborah Isocrono", hostUsers: ["debis_"], type: "Guided walk and Intro to iNat talk", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/inat-together-a-biella-natura-alla-conca-di-oropa", locs: [[45.60885,7.99287]] },
+  { title: "Longrun iNat Together Guided Walk", host: "Hester Stanwood", hostUsers: ["hestan"], type: "Guided walk", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/longrun-inat-together-guided-walk", locs: [[51.01874,-3.11994]] },
+  { title: "iNat Together 2026: İÜC Avcılar Kampüsü", host: "Linar", hostUsers: ["linsaf_svg"], type: "Intro to iNat talk & trying it out together", date: "September 23, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-iuc-avcilar-kampusu", locs: [[40.99204,28.72935]] },
+  { title: "iNat Together: Short Hills Provincial Park", host: "Brad Demers", hostUsers: ["bdemers76"], type: "Intro to iNat talk & trying it out together", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/inat-together-short-hills-provincial-park", locs: [[43.09777,-79.2846]] },
 ];
 
 let unit = 'km';
