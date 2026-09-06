@@ -304,17 +304,14 @@
 // below.
 // LAST_BUILT_DATE below is the single source of truth for the "current as
 // of" date shown in the footer AND this comment — update it in one place.
-const LAST_BUILT_DATE = 'September 4, 2026';
-// Last built: September 4, 2026 — 236 approved events at build time.
+const LAST_BUILT_DATE = 'September 5, 2026';
+// Last built: September 5, 2026 — 257 approved events at build time.
 // Places data snapshot used: September 1, 2026 export.
-// Every event now stores an `obs` field (iNaturalist's
-// observation_requirements_updated_at). On future refreshes, only projects
-// whose obs timestamp has changed need their location re-resolved — this
-// replaces doing a full place lookup on all events every time. (Note: for
-// multi-location events, always re-check the FULL search_parameters
-// place_id array, not just the compact top-level place_id field, which
-// only reflects one of several places and can miss changes — this is how
-// the No Bones Bioblitz location change was almost missed this round.)
+// This refresh used the fast incremental re-check: all 236 prior events'
+// obs timestamps were compared against baseline, and only one had actually
+// changed (a renamed project — "Home River Bioblitz, Bangkok 2026" — same
+// location, new slug/title). No full place re-resolution was needed for
+// the other 235.
 //
 // Flags for Alison's review:
 //   - "iNat together Salamanca 2026" (David Marcos Vidal) resolves to the
@@ -557,7 +554,7 @@ const EVENTS = [
   { title: "Spike Island (Widnes) Bioblitz", host: "Lewis Emery", hostUsers: ["lewis550"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/spike-island-widnes-bioblitz", locs: [[53.35425,-2.71839]], obs: "2026-08-28T07:33:54-07:00" },
   { title: "iNat Together: falene a Cineto Romano", host: "Paolo Mazzei", hostUsers: ["mazzeip","carolynberger"], type: "Moth night", date: "September 21, 2026", url: "https://www.inaturalist.org/projects/inat-together-falene-a-cineto-romano", locs: [[42.04688,12.94649]], obs: "2026-08-28T00:11:46-07:00" },
   { title: "iNat Together, Glasgow South: Intro to iNaturalist", host: "Em Calam", hostUsers: ["emetica"], type: "Intro to iNat talk & trying it out together", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/inat-together-glasgow-south-intro-to-inaturalist", locs: [[55.83141,-4.26761]], obs: "2026-08-28T08:06:16-07:00" },
-  { title: "iNat Together: The Home Bangkok River Bioblitz 2026", host: "Utain Pummarin", hostUsers: ["utain"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/inat-together-the-home-bangkok-river-bioblitz-2026", locs: [[13.60462,100.47793],[13.634,100.49557]], obs: "2026-08-28T08:14:54-07:00" },
+  { title: "Home River Bioblitz, Bangkok 2026", host: "Utain Pummarin", hostUsers: ["utain"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/home-river-bioblitz-bangkok-2026", locs: [[13.60462,100.47793],[13.634,100.49557]], obs: "2026-08-28T22:14:54+07:00" },
   { title: "Indian Brook Reservoir Community Science Walk (9/20/2026)", host: "Juno Stahl", hostUsers: ["pobblebonk","insectinspector"], type: "Guided walk", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/indian-brook-reservoir-community-science-walk-9-20-2026", locs: [[44.53814,-73.10032]], obs: "2026-08-28T08:22:44-07:00" },
   { title: "let's forage!", host: "Addie Gardner", hostUsers: ["forage_ag"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/let-s-forage", locs: [[40.00977,-82.83769],[40.01415,-82.83662]], obs: "2026-08-28T08:14:24-07:00" },
   { title: "iNat Together Agronomía-USAC: explorando la diversidad biológica del CEDA", host: "Gandhi Ponce", hostUsers: ["jpeg_gt","liza_gabriela"], type: "Intro to iNat talk & trying it out together", date: "September 24, 2026", url: "https://guatemala.inaturalist.org/projects/inat-together-agronomia-usac-explorando-la-diversidad-biologica-del-ceda", locs: [[14.58215,-90.55218]], obs: "2026-08-28T08:16:22-07:00" },
@@ -590,6 +587,27 @@ const EVENTS = [
   { title: "iNat Together: Merrimac Town Forest Bug Hunt", host: "Luca Provencal", hostUsers: ["lucaprovencal"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-merrimac-town-forest-bug-hunt", locs: [[42.84293,-71.02242]], obs: "2026-08-28T16:23:02-07:00" },
   { title: "Balch Springs Biodiversity Blitz: iNat Together 2026", host: "Jess Reaka", hostUsers: ["jess_the_mess"], type: "Bioblitz", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/balch-springs-biodiversity-blitz-inat-together-2026", locs: [[32.71951,-96.60676]], obs: "2026-08-28T17:00:59-07:00" },
   { title: "Florida Tech September 19th 2026 Bioblitz", host: "Jordan Cormier", hostUsers: ["Cormier_Nature"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/florida-tech-september-19th-2026-bioblitz", locs: [[28.06422,-80.62237]], obs: "2026-08-28T17:25:43-07:00" },
+  { title: "Дневник наблюдений 2026", host: "Anastasiia Merkulova", hostUsers: ["anastasiiamerkulova"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/дневник-наблюдений-2026", locs: [[61.54655,-74.9928]], obs: "2026-07-29T03:25:19-07:00" },
+  { title: "Jabiru Island Butterfly Walk", host: "Guy Warren", hostUsers: ["guypaints"], type: "Guided walk", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/jabiru-island-butterfly-walk", locs: [[-27.87696,153.38109]], obs: "2026-08-27T22:27:43-07:00" },
+  { title: "Cougar Trails Bioblitz", host: "Olivia Walker", hostUsers: ["riparianolivia"], type: "Bioblitz", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/cougar-trails-bioblitz", locs: [[45.73179,-122.63134]], obs: "2026-08-27T21:48:18-07:00" },
+  { title: "BPTMN Sept 2026 BioBlitz - UNT Frisco", host: "Adolfo Reyes", hostUsers: ["areyes81","lisa281","rick57","bobbie79","blue-dasher","texarina","rmboys","mcandreescu","calibakker"], type: "Bioblitz", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/bptmn-sept-2026-bioblitz-unt-frisco", locs: [[33.18592,-96.80688]], obs: "2026-08-29T13:46:46-07:00" },
+  { title: "\"iNat Together\" Bioblitz at Pioneer Park 2026", host: "Ash Garr", hostUsers: ["rookbrightsilver"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-bioblitz-at-pioneer-park-2026", locs: [[47.55924,-122.22825]], obs: "2026-08-29T00:44:01+00:00" },
+  { title: "Northshore iNaturalist Group Hike", host: "Roy Rutherford", hostUsers: ["weedywonders"], type: "Group hike", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/northshore-inaturalist-group-hike", locs: [[46.76920,-92.16452]], obs: "2026-08-28T17:47:52-07:00" },
+  { title: "2026 ETMC Knoxville Fungal Foray", host: "Ari Puentes", hostUsers: ["aripuentes"], type: "Fungal Foray", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/2026-etmc-knoxville-fungal-foray", locs: [[35.94306,-83.88504]], obs: "2026-08-26T19:03:02-07:00" },
+  { title: "9/20/2026 - Sketch + iNat at Esprit Park", host: "Vidya Giri", hostUsers: ["vidgi"], type: "Guided iNat + sketch walk at a park", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/9-20-2026-sketch-inat-at-esprit-park", locs: [[37.76097,-122.39103]], obs: "2026-08-28T18:21:57-07:00" },
+  { title: "iNat Together Knoxville BioBlitz", host: "Ari Puentes", hostUsers: ["aripuentes"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-knoxville-bioblitz", locs: [[35.94306,-83.88504]], obs: "2026-08-28T18:24:49-07:00" },
+  { title: "Chile Primavera 2026", host: "Leonardo Mondaca Lara", hostUsers: ["leonardomondacalara","jmcancino","felipetorres_pdf","cristianriquelme","diegoalmendras"], type: "Guided walk", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/chile-primavera-2026", locs: [[-36.77079,-87.93579]], obs: "2026-08-16T19:41:42-07:00" },
+  { title: "iNat Together 2026—observing Rock Creek Park!", host: "Regina Wilson", hostUsers: ["margaritanoir"], type: "Group hike", date: "September 25, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-observing-rock-creek-park", locs: [[38.94479,-77.03716]], obs: "2026-08-28T18:44:32-07:00" },
+  { title: "Shea Woods Reservoir Loop Walk", host: "Rachel Stone", hostUsers: ["ohmyrachel"], type: "Intro to iNat talk & trying it out together", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/shea-woods-reservoir-loop-walk", locs: [[45.26068,-75.8951]], obs: "2026-08-28T18:33:53-07:00" },
+  { title: "Bioblitz L'Albera Marítima", host: "Jofre Espigule", hostUsers: ["jofree"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/bioblitz-l-albera-maritima", locs: [[42.39213,3.17165]], obs: "2026-08-28T19:06:16-07:00" },
+  { title: "Fall Walk(s) @ Hammond River Nature Park", host: "Sarah Hirtle", hostUsers: ["shirtle"], type: "Intro to iNat talk & trying it out together", date: "September 24, 2026", url: "https://www.inaturalist.org/projects/fall-walk-s-hammond-river-nature-park", locs: [[45.48651,-65.90933]], obs: "2026-08-28T19:07:02-07:00" },
+  { title: "iNat Together 2026: Intro to iNat at Gifford Pinchot State Park", host: "Kylie Wirebach", hostUsers: ["Kyliewir"], type: "Intro to iNat talk & trying it out together", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-intro-to-inat-at-gifford-pinchot-state-park", locs: [[40.07752,-76.8892]], obs: "2026-08-28T08:04:24-07:00" },
+  { title: "UBC Birding Club Birdwalk", host: "Atlas Danks", hostUsers: ["atl_nature_2022"], type: "Guided walk", date: "September 26–27, 2026", url: "https://www.inaturalist.ca/projects/ubc-birding-club-birdwalk", locs: [[49.27323,-123.19677]], obs: "2026-08-28T20:20:28-07:00" },
+  { title: "iNat Together bioblitz - Portland", host: "Kristina Weis", hostUsers: ["kristinaweis","codyhough"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/inat-together-bioblitz-portland", locs: [[45.48604,-122.50434]], obs: "2026-08-28T20:57:26-07:00" },
+  { title: "Brand Park Bioblitz - iNat Together 2026", host: "Brenton Cooper", hostUsers: ["cooper-conservation","ectothermist"], type: "Intro to iNat talk & Bioblitz", date: "September 23, 2026", url: "https://www.inaturalist.org/projects/brand-park-bioblitz-inat-together-2026", locs: [[34.19252,-118.27186]], obs: "2026-08-28T23:50:35-07:00" },
+  { title: "UNF Bioblitz 9/26/26", host: "Milo Caton", hostUsers: ["milo_caton"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/unf-bioblitz-9-26-26", locs: [[30.26789,-81.51038]], obs: "2026-08-26T14:46:14-07:00" },
+  { title: "Invertebrate Club of Southern California iNat Together Hike", host: "Jessiah", hostUsers: ["arthroverts"], type: "Group hike", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/invertebrate-club-of-southern-california-inat-together-hike", locs: [[34.19971,-118.17185]], obs: "2026-08-29T17:30:08-07:00" },
+  { title: "BSA BioBlitz 2026", host: "Emily Seckel", hostUsers: ["eseckel"], type: "Bioblitz", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/bsa-bioblitz-2026", locs: [[40.66197,-83.64786]], obs: "2026-08-28T11:40:00-07:00" },
 ];
 
 let unit = 'km';
