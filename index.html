@@ -304,16 +304,13 @@
 // below.
 // LAST_BUILT_DATE below is the single source of truth for the "current as
 // of" date shown in the footer AND this comment — update it in one place.
-const LAST_BUILT_DATE = 'September 5, 2026';
-// Last built: September 5, 2026 — 257 approved events at build time.
+const LAST_BUILT_DATE = 'September 6, 2026';
+// Last built: September 6, 2026 — 258 approved events at build time.
 // Places data snapshot used: September 1, 2026 export.
-// This refresh used the fast incremental re-check: all 236 prior events'
-// obs timestamps were compared against baseline, and only one had actually
-// changed (a renamed project — "Home River Bioblitz, Bangkok 2026" — same
-// location, new slug/title). No full place re-resolution was needed for
-// the other 235.
 //
 // Flags for Alison's review:
+//   - "2026 Beechworth Orchid Field Survey" (Tess) resolves to the whole
+//     town of Beechworth, not the specific Ingram's Rock survey site.
 //   - "iNat together Salamanca 2026" (David Marcos Vidal) resolves to the
 //     entire city of Salamanca, not a specific park — date/location still
 //     TBD per the submission itself.
@@ -608,6 +605,7 @@ const EVENTS = [
   { title: "UNF Bioblitz 9/26/26", host: "Milo Caton", hostUsers: ["milo_caton"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/unf-bioblitz-9-26-26", locs: [[30.26789,-81.51038]], obs: "2026-08-26T14:46:14-07:00" },
   { title: "Invertebrate Club of Southern California iNat Together Hike", host: "Jessiah", hostUsers: ["arthroverts"], type: "Group hike", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/invertebrate-club-of-southern-california-inat-together-hike", locs: [[34.19971,-118.17185]], obs: "2026-08-29T17:30:08-07:00" },
   { title: "BSA BioBlitz 2026", host: "Emily Seckel", hostUsers: ["eseckel"], type: "Bioblitz", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/bsa-bioblitz-2026", locs: [[40.66197,-83.64786]], obs: "2026-08-28T11:40:00-07:00" },
+  { title: "2026 Beechworth Orchid Field Survey", host: "Tess", hostUsers: ["averagefungienjoyer","Pobblebonk420"], type: "Guided walk", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/2026-beechworth-orchid-field-survey", locs: [[-36.35246,146.688]], obs: "2026-08-29T21:29:06-07:00" },
 ];
 
 let unit = 'km';
