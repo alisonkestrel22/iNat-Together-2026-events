@@ -213,6 +213,8 @@
     background: rgba(255,255,255,0.6); border-radius: 8px;
     border: 1px solid #cbdcb8; font-size: 13px; line-height: 1.6;
   }
+  .widen-radius-note a { color: var(--accent); font-weight: 700; }
+  .widen-radius-note a:hover { color: var(--yes); }
 
   .open-project-note {
     margin-top: 16px; padding: 14px 16px;
@@ -266,7 +268,8 @@
     <span class="examples-label">Try:</span>
     <button type="button" class="example-chip" onclick="tryExample(this)">Toronto, Canada</button>
     <button type="button" class="example-chip" onclick="tryExample(this)">Sydney, Australia</button>
-    <button type="button" class="example-chip" onclick="tryExample(this)">Santa Rosa, California</button>
+    <button type="button" class="example-chip" onclick="tryExample(this)">San Francisco, California</button>
+    <button type="button" class="example-chip" onclick="tryExample(this)">Istanbul, Turkey</button>
   </div>
 
   <div id="result" aria-live="polite"></div>
@@ -349,6 +352,40 @@ const LAST_BUILT_DATE = 'September 6, 2026';
 // calculation. Per Alison: don't proactively re-check every place's real
 // geometry for this (too costly at 258+ events) — just apply this same
 // fix if/when another oddly-shaped place gets flagged or reported.
+//
+// River-shaped (long, sinuous) places: a single point badly under-serves a
+// place that's a whole river, since someone near one end could be many km
+// from wherever the point landed. "Swiss Home River Bioblitz 2026" (5
+// named rivers) and "Basel Home Rivers Bioblitz" (a single place made of 4
+// river shapes) both got this treatment: instead of one point per river,
+// each river now has ~4 points sampled at even intervals along its actual
+// length (using the place's real polygon boundary, sampling only half its
+// perimeter since a thin river-shaped polygon is a there-and-back loop
+// tracing both banks). These extra points just get added to the same
+// `locs` array used everywhere else — no new matching logic was needed.
+// This is a deliberate "good enough" fix rather than true point-to-line
+// distance — per Alison, apply the same sampling approach to any other
+// river/trail-shaped place that comes up, rather than building exact
+// line-distance math.
+//
+// Non-contiguous/scattered "multigeometry" places: some named places aren't
+// one shape but many disconnected pieces (a park or refuge assembled from
+// separate parcels over time). A single overall centroid across all pieces
+// almost never lands on any actual piece of land — confirmed for all three
+// found here: "San Diego September 2026 Bioblitz" (really "Otay Valley
+// Regional Park," 15 disconnected parcels), "iNat Together at the Red
+// River National Wildlife Refuge" (22 disconnected refuge units spread
+// across ~100km), and "iNat Together 2026—observing Rock Creek Park!"
+// (180(!) disconnected NPS parcels around DC — Rock Creek Park
+// administratively includes many separate reservations, not just the
+// creek corridor). Fixed by computing a true area centroid for EACH
+// disconnected piece and adding all of them to `locs`. For Rock Creek
+// Park specifically, 180 pieces is too many to use directly (mostly tiny
+// slivers) — kept only the 15 largest by area, which together cover ~88%
+// of the total land area. Checked "T3C Coonamessett River BioBlitz 2026"
+// (3 separate small conservation-area places) too — its 3 points already
+// fall correctly inside their (small, compact) shapes, so no fix needed
+// there.
 //
 // Flags for Alison's review:
 //   - "2026 Beechworth Orchid Field Survey" (Tess) resolves to the whole
@@ -479,7 +516,7 @@ const EVENTS = [
   { title: "Balch Creek Bioblitz", host: "Fern Wexler", hostUsers: ["fernsibley"], type: "Bioblitz", date: "September 18–25, 2026", url: "https://www.inaturalist.org/projects/balch-creek-bioblitz", locs: [[45.53221,-122.72994]], obs: "2026-08-24T18:54:35-07:00" },
   { title: "No Bones Bioblitz in Monterey Bay", host: "Maryjanna Drummond", hostUsers: ["invertebae"], type: "Bioblitz", date: "September 18–20, 2026", url: "https://www.inaturalist.org/projects/no-bones-bioblitz-in-monterey-bay", locs: [[36.70476,-121.81516],[36.80893,-121.78708],[36.62579,-121.94648]], obs: "2026-08-24T19:23:55-07:00" },
   { title: "September 2026 iNat Together with BoM", host: "Gaurav S. Soman", hostUsers: ["gs5"], type: "Intro to iNat talk & trying it out together", date: "September 26–27, 2026", url: "https://www.inaturalist.org/projects/september-2026-inat-together-with-bom", locs: [[18.94776,72.81312],[19.26994,72.95547]], obs: "2026-08-24T20:51:06-07:00" },
-  { title: "Swiss Home River Bioblitz 2026", host: "Dominic Tinner", hostUsers: ["dtinner","shalini69","saxifragach","inasiebert"], type: "Bioblitz", date: "September 18–20, 2026", url: "https://www.inaturalist.org/projects/swiss-home-river-bioblitz-2026", locs: [[47.03388,8.44722],[47.42528,8.772],[46.98092,7.74387],[47.39671,8.97098],[47.61404,8.23183]], obs: "2026-07-28T12:04:57+02:00" },
+  { title: "Swiss Home River Bioblitz 2026", host: "Dominic Tinner", hostUsers: ["dtinner","shalini69","saxifragach","inasiebert"], type: "Bioblitz", date: "September 18–20, 2026", url: "https://www.inaturalist.org/projects/swiss-home-river-bioblitz-2026", locs: [[47.61794,7.58034],[47.55936,8.04326],[47.57529,8.54223],[47.65087,8.87635],[46.76369,7.93217],[46.9072,7.75531],[47.06958,7.59118],[47.17917,7.57027],[47.49342,8.2435],[47.11384,8.36998],[46.8478,8.63773],[46.58487,8.4998],[47.55391,8.56067],[47.46736,8.73238],[47.38127,8.8709],[47.30155,8.97605],[47.59881,8.58757],[47.5634,9.08944],[47.37695,9.08945],[47.24318,9.35324]], obs: "2026-07-28T12:04:57+02:00" },
   { title: "Maadi Canal Street Nature Together 2026", host: "Sarah Chaney", hostUsers: ["scchaney","amlgaber"], type: "Bioblitz", date: "September 19 & 26, 2026", url: "https://www.inaturalist.org/projects/maadi-canal-street-nature-together-2026", locs: [[29.95737,31.26439]], obs: "2026-08-24T21:53:27-07:00" },
   { title: "MZU Bioblitz: Celebrating iNat Together 2026", host: "Shyam S. Phartyal", hostUsers: ["shyamphartyal","onkar07"], type: "Bioblitz", date: "September 21, 2026", url: "https://www.inaturalist.org/projects/mzu-bioblitz-celebrating-inat-together-2026", locs: [[23.73993,92.65615]], obs: "2026-08-25T02:58:05-07:00" },
   { title: "iNat-Together: Auf Pilz-Suche im Meilwald", host: "Katrin Simon", hostUsers: ["katrin_simon"], type: "Bioblitz", date: "September 28, 2026", url: "https://www.inaturalist.org/projects/inat-together-auf-pilz-suche-im-meilwald", locs: [[49.61023,11.03702]], obs: "2026-08-25T00:08:26-10:00" },
@@ -493,9 +530,9 @@ const EVENTS = [
   { title: "Monterey Peninsula Intertidal Bioblitz", host: "Ron Provost", hostUsers: ["mrpmarinebio"], type: "Intro to iNat followed by Bioblitz", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/monterey-peninsula-intertidal-bioblitz", locs: [[36.62223,-121.95432]], obs: "2026-08-10T02:00:52+00:00" },
   { title: "iNat Together Bio Blitz at Frick Park", host: "David Outomuro", hostUsers: ["davidoutomuro"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-bio-blitz-at-frick-park", locs: [[40.43483,-79.90369]], obs: "2026-08-25T11:08:33-07:00" },
   { title: "UNE Fall '26 Bioblitz", host: "Rachel Mendez", hostUsers: ["rmendez3"], type: "Bioblitz", date: "September 20, 2026 (rain date Sept 27)", url: "https://www.inaturalist.org/projects/une-fall-26-bioblitz", locs: [[43.45516,-70.40025]], obs: "2026-08-25T11:30:34-07:00" },
-  { title: "San Diego September 2026 Bioblitz", host: "Julius Simonelli", hostUsers: ["jss367","mikethebirder","thesafarihiker","biohexx1"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/san-diego-september-2026-bioblitz", locs: [[32.58509,-116.99068]], obs: "2026-08-25T11:43:03-07:00" },
+  { title: "San Diego September 2026 Bioblitz", host: "Julius Simonelli", hostUsers: ["jss367","mikethebirder","thesafarihiker","biohexx1"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/san-diego-september-2026-bioblitz", locs: [[32.58711,-117.05249],[32.58755,-117.06065],[32.58697,-117.0392],[32.58802,-117.0714],[32.58811,-117.06399],[32.59183,-117.00698],[32.6054,-116.92925],[32.56366,-117.03852],[32.56053,-117.0346],[32.5884,-116.9422],[32.59593,-116.92891],[32.59417,-116.91957],[32.60851,-116.90764],[32.59017,-117.08601],[32.58923,-117.07439]], obs: "2026-08-25T11:43:03-07:00" },
   { title: "iNat Together at Freshkills Park", host: "Bonnie Nygard", hostUsers: ["bnyg3"], type: "Guided walk", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/inat-together-at-freshkills-park", locs: [[40.58051,-74.18564]], obs: "2026-08-25T07:42:43-07:00" },
-  { title: "Basel Home Rivers Bioblitz 2026 & iNaturalist Together", host: "Magdalena Nogaj", hostUsers: ["robinia396","codrin_bucur"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/basel-home-rivers-bioblitz-2026-inaturalist-together", locs: [[47.55088,7.6331]], obs: "2026-08-25T10:26:09-10:00" },
+  { title: "Basel Home Rivers Bioblitz 2026 & iNaturalist Together", host: "Magdalena Nogaj", hostUsers: ["robinia396","codrin_bucur"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/basel-home-rivers-bioblitz-2026-inaturalist-together", locs: [[47.48928,7.60096],[47.5147,7.61095],[47.54018,7.62019],[47.5569,7.62085],[47.54284,7.57646],[47.54912,7.58391],[47.53197,7.57259],[47.51325,7.56122],[47.59099,7.59444],[47.56402,7.62277],[47.53727,7.69467],[47.52817,7.69487],[47.58338,7.59593],[47.58434,7.62813],[47.59717,7.64506],[47.59113,7.65277]], obs: "2026-08-25T10:26:09-10:00" },
   { title: "Walker Ranch Blacklight - iNat Together", host: "Nathan Wahler", hostUsers: ["narwahl","janeweeden","milesmeasured"], type: "Bioblitz", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/walker-ranch-blacklight-inat-together", locs: [[29.55675,-98.50502]], obs: "2026-08-23T14:35:23-07:00" },
   { title: "Proyecto iNat Together Habana 2026", host: "David R. Arregui", hostUsers: ["did_wild"], type: "Guided walk & camping", date: "September 22–23, 2026", url: "https://www.inaturalist.org/projects/proyecto-inat-together-habana-2026", locs: [[23.08196,-82.30729]], obs: "2026-08-25T20:51:44+00:00" },
   { title: "Campus HS Environmental Club BioBlitz 9/19", host: "Tyler Balsters", hostUsers: ["balstersbugs"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/campus-hs-environmental-club-bioblitz-9-19", locs: [[37.59525,-97.36592],[37.60063,-97.36143]], obs: "2026-08-25T15:18:03-07:00" },
@@ -621,7 +658,7 @@ const EVENTS = [
   { title: "\"iNat Together\" Cardiff University Redwood Building BioBlitz", host: "Sabarni Sarker", hostUsers: ["sabarnisarker"], type: "Bioblitz", date: "September 23, 2026", url: "https://www.inaturalist.org/projects/inat-together-cardiff-university-redwood-building-bioblitz", locs: [[51.50062,-3.16901]], obs: "2026-08-28T14:12:04-07:00" },
   { title: "Maule Primavera 2026", host: "Juan M. Cancino", hostUsers: ["jmcancino"], type: "Intro to iNat talk & trying it out together", date: "September 18–28, 2026", url: "https://inaturalist.mma.gob.cl/projects/maule-primavera-2026", locs: [[-35.80215,-72.41013],[-35.57843,-71.44752],[-35.91032,-71.43516]], obs: "2026-08-28T13:42:55-07:00" },
   { title: "Waverley Wander - 20th Sept 2026", host: "Ben Thomas", hostUsers: ["bentho","tienlung86"], type: "Guided walk", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/waverley-wander-20th-sept-2026", locs: [[51.15828,-0.6311]], obs: "2026-08-28T14:45:19-07:00" },
-  { title: "iNat Together at the Red River National Wildlife Refuge", host: "George Gehrig", hostUsers: ["quovadis"], type: "Bioblitz", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/inat-together-at-the-red-river-national-wildlife-refuge", locs: [[31.97373,-93.2249]], obs: "2026-08-28T15:26:14-07:00" },
+  { title: "iNat Together at the Red River National Wildlife Refuge", host: "George Gehrig", hostUsers: ["quovadis"], type: "Bioblitz", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/inat-together-at-the-red-river-national-wildlife-refuge", locs: [[31.55452,-92.77075],[31.53869,-92.7633],[31.54969,-92.77396],[31.60095,-92.88837],[31.8039,-93.20729],[31.80306,-93.22434],[31.80364,-93.26562],[31.8003,-93.2129],[31.81419,-93.24878],[31.5508,-92.81413],[31.57251,-92.79391],[31.83582,-93.27738],[32.08854,-93.56494],[32.15846,-93.51185],[32.12709,-93.48281],[32.43857,-93.69395],[32.44165,-93.67234],[32.10155,-93.5465],[32.10177,-93.56073],[32.12574,-93.46768],[31.82787,-93.23974],[31.82974,-93.19909]], obs: "2026-08-28T15:26:14-07:00" },
   { title: "Latino Conservation Week Celebration 2026 x iNat Together", host: "Olivia Poulos", hostUsers: ["opoulos","findmeoutside"], type: "Guided walk", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/latino-conservation-week-celebration-2026-x-inat-together", locs: [[32.62262,-117.10029]], obs: "2026-08-28T16:34:31-07:00" },
   { title: "iNat Together: Merrimac Town Forest Bug Hunt", host: "Luca Provencal", hostUsers: ["lucaprovencal"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-merrimac-town-forest-bug-hunt", locs: [[42.84293,-71.02242]], obs: "2026-08-28T16:23:02-07:00" },
   { title: "Balch Springs Biodiversity Blitz: iNat Together 2026", host: "Jess Reaka", hostUsers: ["jess_the_mess"], type: "Bioblitz", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/balch-springs-biodiversity-blitz-inat-together-2026", locs: [[32.71951,-96.60676]], obs: "2026-08-28T17:00:59-07:00" },
@@ -636,7 +673,7 @@ const EVENTS = [
   { title: "9/20/2026 - Sketch + iNat at Esprit Park", host: "Vidya Giri", hostUsers: ["vidgi"], type: "Guided iNat + sketch walk at a park", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/9-20-2026-sketch-inat-at-esprit-park", locs: [[37.76097,-122.39103]], obs: "2026-08-28T18:21:57-07:00" },
   { title: "iNat Together Knoxville BioBlitz", host: "Ari Puentes", hostUsers: ["aripuentes"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-knoxville-bioblitz", locs: [[35.94306,-83.88504]], obs: "2026-08-28T18:24:49-07:00" },
   { title: "Chile Primavera 2026", host: "Leonardo Mondaca Lara", hostUsers: ["leonardomondacalara","jmcancino","felipetorres_pdf","cristianriquelme","diegoalmendras"], type: "Guided walk", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/chile-primavera-2026", locs: [[-36.77079,-87.93579]], bboxes: [[-56.0340,-109.5049,-17.5075,-66.3667]], obs: "2026-08-16T19:41:42-07:00" },
-  { title: "iNat Together 2026—observing Rock Creek Park!", host: "Regina Wilson", hostUsers: ["margaritanoir"], type: "Group hike", date: "September 25, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-observing-rock-creek-park", locs: [[38.94479,-77.03716]], obs: "2026-08-28T18:44:32-07:00" },
+  { title: "iNat Together 2026—observing Rock Creek Park!", host: "Regina Wilson", hostUsers: ["margaritanoir"], type: "Group hike", date: "September 25, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-observing-rock-creek-park", locs: [[38.96265,-77.04623],[38.9198,-77.08236],[38.91099,-77.05753],[38.92073,-77.05207],[38.92727,-77.09512],[38.95267,-77.07689],[38.94923,-77.00503],[38.93735,-77.07929],[38.909,-77.07882],[38.93976,-76.97089],[38.94604,-77.06074],[38.95284,-77.00476],[38.96014,-77.01431],[38.93158,-77.11219],[38.97799,-77.05813]], obs: "2026-08-28T18:44:32-07:00" },
   { title: "Shea Woods Reservoir Loop Walk", host: "Rachel Stone", hostUsers: ["ohmyrachel"], type: "Intro to iNat talk & trying it out together", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/shea-woods-reservoir-loop-walk", locs: [[45.26068,-75.8951]], obs: "2026-08-28T18:33:53-07:00" },
   { title: "Bioblitz L'Albera Marítima", host: "Jofre Espigule", hostUsers: ["jofree"], type: "Bioblitz", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/bioblitz-l-albera-maritima", locs: [[42.39213,3.17165]], obs: "2026-08-28T19:06:16-07:00" },
   { title: "Fall Walk(s) @ Hammond River Nature Park", host: "Sarah Hirtle", hostUsers: ["shirtle"], type: "Intro to iNat talk & trying it out together", date: "September 24, 2026", url: "https://www.inaturalist.org/projects/fall-walk-s-hammond-river-nature-park", locs: [[45.48651,-65.90933]], obs: "2026-08-28T19:07:02-07:00" },
@@ -788,9 +825,9 @@ function runSearch(lat, lng, label) {
 // Rendering
 // ══════════════════════════════════════════════════════════════════════════
 const WIDEN_RADIUS_NOTE = `<div class="widen-radius-note">
-  📏 <strong>Before you give up — try a bigger radius.</strong> Each event's location is shown as a single point at the center of the area its project covers. If that area is large (a big park, a whole coastline, a county), the actual event could be happening closer to you than that center point suggests — just past your search radius. Try widening your search before assuming nothing's nearby.
+  📏 <strong>Before you give up — try a bigger radius.</strong> Most events are shown as a single point representing their project's location, so a nearby event could still fall just outside your search radius. Try widening it before assuming nothing's nearby.
   <br><br>
-  A few projects cover an entire country rather than one location — those show up no matter what radius you search at, so widening won't add more of them.
+  You can also check the <a href="https://www.inaturalist.org/projects/inat-together-2026" target="_blank">iNat Together 2026 umbrella project</a> map to visually scan for events yourself.
 </div>`;
 
 const OPEN_PROJECT_NOTE = `<div class="open-project-note">
