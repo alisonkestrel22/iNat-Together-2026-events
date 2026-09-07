@@ -2,9 +2,9 @@
 
 A radius-based search tool for finding in-person iNat Together 2026 events (September 18–28, 2026). Visitors enter a location or use their device's GPS, choose a search radius, and see approved events within that radius, sorted by distance.
 
-**Live tool:** add your GitHub Pages URL here, e.g. `https://[username].github.io/inat-together-2026-finder/`
+**Live tool:** https://alisonkestrel22.github.io/iNat-Together-2026-events/
 
-Embedded on: add the iNat wiki page URL here
+Embedded on: https://www.inaturalist.org/pages/inattogether
 
 Current as of this README: **258 approved events** (last built September 6, 2026).
 
