@@ -313,8 +313,12 @@
 // below.
 // LAST_BUILT_DATE below is the single source of truth for the "current as
 // of" date shown in the footer AND this comment — update it in one place.
-const LAST_BUILT_DATE = 'September 8, 2026';
-// Last built: September 8, 2026 — 261 approved events at build time.
+const LAST_BUILT_DATE = 'September 9, 2026';
+// Last built: September 9, 2026 — 264 approved events at build time.
+// This refresh also removed a co-host from "iNat Together Guided Walk at
+// Mont-Royal Park" (Julie Lapalme) at the host's explicit request (sheet
+// Notes: "update project finder to remove the other ambassador as a
+// host") — now lists only Julie Lapalme.
 // Places data snapshot used: September 8, 2026 export (fresh — 473 new
 // places since the September 1 snapshot).
 // Note: "iNat Together: Renfrew Creek" (Nata Culhane) was renamed to
@@ -391,6 +395,11 @@ const LAST_BUILT_DATE = 'September 8, 2026';
 // there.
 //
 // Flags for Alison's review:
+//   - "Brookline iNaturalist Discovery Event" (Isabella Acerra) resolves to
+//     all of Greater Boston, not a specific site in Brookline.
+//   - "Sunset Guided Walk w/ Optional iNaturalist orientation" (Eldon
+//     Grimm) resolves to all of Larimer County, CO (one of its two
+//     places), not a specific trailhead.
 //   - "2026 Beechworth Orchid Field Survey" (Tess) resolves to the whole
 //     town of Beechworth, not the specific Ingram's Rock survey site.
 //   - "iNat together Salamanca 2026" (David Marcos Vidal) resolves to the
@@ -463,7 +472,7 @@ const EVENTS = [
   { title: "Bioblitz at Orlando Wetlands, Sept. 19, 2026", host: "Gary T. Leavens", hostUsers: ["garyleavens","vita-sativum"], type: "Bioblitz", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/bioblitz-at-orlando-wetlands-sept-19-2026", locs: [[28.5713,-80.99623]], obs: "2026-08-15T07:29:36-04:00" },
   { title: "\"iNat Together-a Bird Bio-Blitz in Irvine Regional Park\"", host: "Chris Bock & Moe Morelock", hostUsers: ["chrisbock","moemorelock"], type: "Bioblitz", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/inat-together-a-bird-bio-blitz-in-irvine-regional-park", locs: [[33.80017,-117.75265]], obs: "2026-08-13T10:05:00-07:00" },
   { title: "Wildlife of Ray Park South Woodford UK", host: "Chris Gannaway", hostUsers: ["chrisgannaway"], type: "Intro to iNat talk & trying it out together", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/wildlife-of-ray-park-south-woodford-uk", locs: [[51.61012,0.04635]], obs: "2026-08-15T15:46:54+01:00" },
-  { title: "iNat Together Guided Walk at Mont-Royal Park", host: "Julie Lapalme", hostUsers: ["lapalma","emilieidion"], type: "Guided walk", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-guided-walk-at-mont-royal-park", locs: [[45.48602,-73.61088]], obs: "2026-08-15T17:29:19+00:00" },
+  { title: "iNat Together Guided Walk at Mont-Royal Park", host: "Julie Lapalme", hostUsers: ["lapalma"], type: "Guided walk", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-guided-walk-at-mont-royal-park", locs: [[45.48602,-73.61088]], obs: "2026-08-15T17:29:19+00:00" },
   { title: "iNat Together: Find Your Nature Friends in Bayview Village", host: "Gary James", hostUsers: ["gary-james"], type: "Guided walk", date: "September 26, 2026", url: "https://www.inaturalist.ca/projects/inat-together-find-your-nature-friends-in-bayview-village", locs: [[43.77815,-79.37811]], obs: "2026-08-14T14:02:30-04:00" },
   { title: "Caminata iNat Juntos/iNat Together", host: "Alejandra Peña", hostUsers: ["ale-alep"], type: "Guided walk", date: "September 18, 2026", url: "https://mexico.inaturalist.org/projects/caminata-inat-juntos-inat-together", locs: [[28.63161,-106.12949]], obs: "2026-08-13T13:01:11-07:00" },
   { title: "iNat Together: Explore the Little Corona Tidepools", host: "Jake Xia", hostUsers: ["itazura","ev3olution"], type: "Bioblitz", date: "September 28, 2026", url: "https://www.inaturalist.org/projects/inat-together-explore-the-little-corona-tidepools", locs: [[33.59068,-117.87108],[33.58711,-117.86652]], obs: "2026-08-16T11:51:23-07:00" },
@@ -691,6 +700,9 @@ const EVENTS = [
   { title: "iNat Together Kampersrus 2026", host: "Rion Lerm", hostUsers: ["rion_bio"], type: "Guided walk", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-kampersrus-2026", locs: [[-24.52004,30.88899]], obs: "2026-08-31T06:57:31-07:00" },
   { title: "Welsh Mountain Zoo BioBlitz (26-27th September 2026)", host: "Archie Bide", hostUsers: ["Archies_animals"], type: "Guided walk", date: "September 26–27, 2026", url: "https://www.inaturalist.org/projects/welsh-mountain-zoo-bioblitz-26-27th-september-2026", locs: [[53.29405,-3.74764]], obs: "2026-09-01T02:26:40-07:00" },
   { title: "iNat Together: Renfrew Ravine", host: "Nata Culhane", hostUsers: ["nata_culhane"], type: "Guided walk", date: "September 21, 2026", url: "https://www.inaturalist.org/projects/inat-together-renfrew-ravine", locs: [[49.24956,-123.04363]], obs: "2026-09-01T12:56:19-07:00" },
+  { title: "Brookline iNaturalist Discovery Event", host: "Isabella Acerra", hostUsers: ["illyrasp1983"], type: "Intro to iNat talk & trying it out together", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/brookline-inaturalist-discovery-event", locs: [[42.31544,-70.79069]], obs: "2026-08-28T21:01:53-07:00" },
+  { title: "Biodiversidad al atardecer en la UPR Cayey", host: "Rita I. Cáceres Charneco", hostUsers: ["ritirene"], type: "Guided walk", date: "September 21, 2026", url: "https://www.inaturalist.org/projects/biodiversidad-al-atardecer-en-la-upr-cayey", locs: [[18.103,-66.13911]], obs: "2026-09-02T09:52:24-07:00" },
+  { title: "Sunset Guided Walk w/ Optional iNaturalist orientation", host: "Eldon Grimm", hostUsers: ["Eldon3"], type: "Guided walk", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/sunset-guided-walk-w-optional-inaturalist-orientation", locs: [[40.62811,-105.56924],[40.40767,-105.06076]], obs: "2026-08-25T16:54:27-07:00" },
 ];
 
 let unit = 'km';
