@@ -313,8 +313,8 @@
 // below.
 // LAST_BUILT_DATE below is the single source of truth for the "current as
 // of" date shown in the footer AND this comment — update it in one place.
-const LAST_BUILT_DATE = 'September 10, 2026';
-// Last built: September 10, 2026 — 270 approved events at build time.
+const LAST_BUILT_DATE = 'September 11, 2026';
+// Last built: September 11, 2026 — 273 approved events at build time.
 // "Attrapez les tous! Gouffre d'Enfer 2026-09-20" (Bevillon) got the same
 // concave-shape fix as Monterey Peninsula: its place is a valley/ravine
 // whose true area centroid fell outside the actual shape, so it's pinned
@@ -399,6 +399,12 @@ const LAST_BUILT_DATE = 'September 10, 2026';
 // there.
 //
 // Flags for Alison's review:
+//   - "Fortuna wash in September" (Jacob Gibson): its place resolves to all
+//     of Yuma County, AZ. Per Alison, manually pinned to 32.6557,-114.398886
+//     near Fortuna Foothills instead, where she believes the event is
+//     actually happening. This is a manual override, not resolved from the
+//     project's place data — if the project's location gets fixed properly
+//     on iNaturalist later, this could be re-resolved normally instead.
 //   - "Brookline iNaturalist Discovery Event" (Isabella Acerra) resolves to
 //     all of Greater Boston, not a specific site in Brookline.
 //   - "Sunset Guided Walk w/ Optional iNaturalist orientation" (Eldon
@@ -713,6 +719,9 @@ const EVENTS = [
   { title: "Sibbald Point Fall Bioblitz", host: "Shaine", hostUsers: ["shainebauer"], type: "Bioblitz", date: "September 21, 2026", url: "https://www.inaturalist.org/projects/sibbald-point-fall-bioblitz", locs: [[44.32797,-79.32209]], obs: "2026-07-18T10:54:34-07:00" },
   { title: "BioBlitz El Jardín de Mamá", host: "Maria Del Carmen Janeiro Bernal", hostUsers: ["Maria1890"], type: "Bioblitz", date: "September 20, 2026", url: "https://www.inaturalist.org/projects/bioblitz-el-jardin-de-mama", locs: [[8.44785,-80.03653]], obs: "2026-09-03T16:25:22+00:00" },
   { title: "Oregon Rare Species Spotters Fungi Bioblitz at Powell Butte", host: "Nora Dunkirk", hostUsers: ["nora_mushrooms"], type: "Bioblitz", date: "September 25, 2026", url: "https://www.inaturalist.org/projects/oregon-rare-species-spotters-fungi-bioblitz-at-powell-butte", locs: [[45.48604,-122.50434]], obs: "2026-08-27T15:07:22-07:00" },
+  { title: "iNat Together / iNat ensemble - Sentier East Branch Trail", host: "Evan Houlahan", hostUsers: ["evan_houlahan"], type: "Intro to iNat talk & trying it out together", date: "September 26–27, 2026", url: "https://www.inaturalist.org/projects/inat-together-inat-ensemble-sentier-east-branch-trail", locs: [[45.61727,-65.04273]], obs: "2026-09-04T05:45:25-07:00" },
+  { title: "iNat Introduction at Sutton Wilderness Trail Park", host: "Brian Dickerson", hostUsers: ["aggie_wildlifer"], type: "Intro to iNat talk & trying it out together", date: "September 27, 2026", url: "https://www.inaturalist.org/projects/inat-introduction-at-sutton-wilderness-trail-park", locs: [[35.24015,-97.43011]], obs: "2026-09-04T08:32:44-07:00" },
+  { title: "Fortuna wash in September", host: "Jacob Gibson", hostUsers: ["jrgibson"], type: "Guided walk", date: "September 18, 2026", url: "https://www.inaturalist.org/projects/fortuna-wash-in-september", locs: [[32.6557,-114.398886]], obs: "2026-09-04T11:27:28-07:00" },
 ];
 
 let unit = 'km';
