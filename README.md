@@ -6,8 +6,6 @@ A radius-based search tool for finding in-person iNat Together 2026 events (Sept
 
 Embedded on: https://www.inaturalist.org/pages/inattogether
 
-Current as of this README: **258 approved events** (last built September 6, 2026).
-
 ---
 
 ## How it works
