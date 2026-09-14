@@ -313,8 +313,13 @@
 // below.
 // LAST_BUILT_DATE below is the single source of truth for the "current as
 // of" date shown in the footer AND this comment — update it in one place.
-const LAST_BUILT_DATE = 'September 13, 2026';
-// Last built: September 13, 2026 — 278 approved events at build time.
+const LAST_BUILT_DATE = 'September 14, 2026';
+// Last built: September 14, 2026 — 282 approved events at build time.
+// "iNat, weNat, letsNat! Introduction and ID party." (Jacob Gibson) is his
+// third project resolving to the same Yuma County place. Per Alison,
+// manually pinned to Arizona Western College (32.6893,-114.496), same as
+// his other two — a manual override, not resolved from the project's
+// place data.
 // "September's Night Life of the Gila Mesa, Yuma Desert" (Jacob Gibson)
 // resolves to the same Yuma County place as his other project ("Fortuna
 // wash in September"). Per Alison, manually pinned to Arizona Western
@@ -404,6 +409,11 @@ const LAST_BUILT_DATE = 'September 13, 2026';
 // there.
 //
 // Flags for Alison's review:
+//   - "iNat Together Moth Night" (Laurie Olesen, Wargo Nature Center)
+//     resolves to all of Anoka County, MN, not the specific nature center.
+//   - "iNat Together 2026: Rayagada" (Bikash Kumar Sahoo) resolves to all
+//     of Rayagada district, India — a large, multi-part administrative
+//     region, not a specific site.
 //   - "Fortuna wash in September" (Jacob Gibson): its place resolves to all
 //     of Yuma County, AZ. Per Alison, manually pinned to 32.6557,-114.398886
 //     near Fortuna Foothills instead, where she believes the event is
@@ -732,6 +742,10 @@ const EVENTS = [
   { title: "Nighttime Moths and Bats -- Univ. of Waterloo", host: "Emilie Knighton", hostUsers: ["em_kn"], type: "Bioblitz", date: "September 24, 2026", url: "https://www.inaturalist.org/projects/nighttime-moths-and-bats-univ-of-waterloo", locs: [[43.47722,-80.5586]], obs: "2026-09-02T14:22:09-07:00" },
   { title: "Striped Peak Bioblitz - iNat Together 2026", host: "Brodie Springer", hostUsers: ["Robogenesis"], type: "Bioblitz", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/striped-peak-bioblitz-inat-together-2026", locs: [[48.15456,-123.67492]], obs: "2026-08-31T21:07:41-07:00" },
   { title: "Freeman Environmental Education Center - BioBlitz 9/28/26", host: "Doug Reith", hostUsers: ["dooug"], type: "Bioblitz", date: "September 28, 2026", url: "https://www.inaturalist.org/projects/freeman-environmental-education-center-bioblitz-9-28-26", locs: [[42.3188,-83.65592]], obs: "2026-09-06T08:15:27-07:00" },
+  { title: "iNat, weNat, letsNat! Introduction and ID party.", host: "Jacob Gibson", hostUsers: ["jrgibson"], type: "Intro to iNat talk & trying it out together", date: "September 23, 2026", url: "https://www.inaturalist.org/projects/inat-wenat-letsnat-introduction-and-id-party", locs: [[32.6893,-114.496]], obs: "2026-09-04T12:10:51-07:00" },
+  { title: "iNat Together 2026: Rayagada", host: "Bikash Kumar Sahoo", hostUsers: ["bikash-kumar"], type: "Intro to iNat talk & trying it out together", date: "September 18–28, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-rayagada", locs: [[19.43391,83.43088]], obs: "2026-09-07T01:52:39-07:00" },
+  { title: "iNat Together Moth Night", host: "Laurie Olesen", hostUsers: ["safechrisLaurie"], type: "Moth Night at the Wargo Nature Center", date: "September 26, 2026", url: "https://www.inaturalist.org/projects/inat-together-moth-night", locs: [[45.22508,-93.26553]], obs: "2026-09-07T16:04:15-04:00" },
+  { title: "iNat Together 2026: Livingstone Lagoons Nature Walk", host: "Clare Mateke", hostUsers: ["claremateke"], type: "Guided walk", date: "September 19, 2026", url: "https://www.inaturalist.org/projects/inat-together-2026-livingstone-lagoons-nature-walk", locs: [[-17.87702,25.84119]], obs: "2026-09-07T12:37:56-07:00" },
 ];
 
 let unit = 'km';
